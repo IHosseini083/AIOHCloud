@@ -1,0 +1,47 @@
+site_name: AIOHCloud
+site_description: Asynchronous python library for Hetzner Cloud API.
+
+theme:
+  name: material
+  palette:
+  - scheme: default
+    primary: deep purple
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  - scheme: slate
+    primary: deep purple
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+  features:
+  - search.suggest
+  - search.highlight
+  - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github-alt
+  language: en
+
+repo_name: IHosseini083/AIOHCloud
+repo_url: https://github.com/IHosseini083/AIOHCloud/
+edit_uri: blob/main/docs/
+
+nav:
+  - Overview: "index.md"
+  - Contributing: "contributing.md"
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/IHosseini083/AIOHCloud

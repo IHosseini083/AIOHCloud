@@ -1,0 +1,16 @@
+{
+    "python.formatting.provider": "black",
+    "editor.rulers": [88],
+    "python.linting.mypyEnabled": true,
+    "ruff.args": ["--config=pyproject.toml"],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        ".venv/": false,
+        ".pytest_cache/": true,
+        ".mypy_cache/": true
+    },
+    "python.languageServer": "Pylance"
+}
