@@ -26,6 +26,8 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
+attrs = "^22.1.0"
+httpx = "^0.23.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10.0"
