@@ -1,20 +1,12 @@
-from typing import Any, Dict, Optional, Tuple, Type, TypeVar
+from typing import Generic, Iterator, List, Optional, TypeVar
 
 import attrs
 
-_T = TypeVar("_T", bound="BaseModel")
-
-
-class BaseModel:
-    __slots__: Tuple[str, ...] = ()
-
-    @classmethod
-    def from_dict(cls: Type[_T], data: Dict[str, Any]) -> _T:
-        return cls(**{k: v for k, v in data.items() if k in cls.__slots__})
+_T = TypeVar("_T")
 
 
 @attrs.define
-class Pagination(BaseModel):
+class Pagination:
     """Pagination object in a `meta` object."""
 
     page: int
@@ -26,7 +18,18 @@ class Pagination(BaseModel):
 
 
 @attrs.define
-class Meta(BaseModel):
+class Meta:
     """Model representing `meta` object of an API response."""
 
     pagination: Pagination
+
+
+@attrs.define
+class Paginated(Generic[_T]):
+    """Model representing a paginated API response."""
+
+    results: List[_T]
+    meta: Meta
+
+    def __iter__(self) -> Iterator[_T]:
+        return iter(self.results)
