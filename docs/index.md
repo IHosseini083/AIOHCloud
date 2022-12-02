@@ -37,7 +37,15 @@ It alos uses the following external packages:
 
 ## Installation
 
+You can install _AIOHCloud_ from [PyPI](https://pypi.org/project/aiohcloud/) using pip:
+
+```bash
+pip install aiohcloud
+```
+
 ## Usage
+
+To see how to use _AIOHCloud_ you can check out the [documentation](https://aiohcloud.pyseyed.ml/).
 
 ## License
 
