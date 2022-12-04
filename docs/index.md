@@ -45,7 +45,7 @@ pip install aiohcloud
 
 ## Usage
 
-To see how to use _AIOHCloud_ you can check out the [documentation](https://aiohcloud.pyseyed.ml/).
+To see how to use _AIOHCloud_ you can check out the [documentation](https://aiohcloud.iliya.dev/).
 
 ## License
 
