@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING, Any, Dict, Optional
 
 from aiohcloud.enums import ActionStatus, SortOrder
-from aiohcloud.models import (
+from aiohcloud.types import (
     Action,
     ActionError,
     ActionResource,
