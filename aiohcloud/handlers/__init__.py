@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING, Protocol, runtime_checkable
 
 from .actions import Actions
+from .datacenters import Datacenters
 
 if TYPE_CHECKING:
     from aiohcloud.client import HetznerCloud

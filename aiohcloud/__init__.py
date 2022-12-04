@@ -1,5 +1,5 @@
 from .client import HetznerCloud
-from .handlers import Actions
+from .handlers import Actions, Datacenters
 
 __version__ = "0.0.2"
 __all__ = [
@@ -7,4 +7,5 @@ __all__ = [
     "HetznerCloud",
     # Handlers
     "Actions",
+    "Datacenters",
 ]
