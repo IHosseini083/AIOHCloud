@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aiohcloud"
-version = "0.0.2"
+version = "0.0.3"
 description = "Asynchronous python library for Hetzner Cloud API."
 authors = ["Seyed Iliya <pyseyed@gmail.com>"]
 license = "GPL-3.0-only"
