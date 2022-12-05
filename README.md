@@ -30,7 +30,7 @@ Key features of _AIOHCloud_ are:
 
 _AIOHCloud_ requires you to have Python 3.8+ installed.
 
-It alos uses the following external packages:
+It also uses the following external packages:
 
 - [httpx] to send HTTP requests.
 - [attrs] for creating API response models.
