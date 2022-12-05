@@ -43,9 +43,30 @@ You can install _AIOHCloud_ from [PyPI](https://pypi.org/project/aiohcloud/) usi
 pip install aiohcloud
 ```
 
-## Usage
+### Simple Example
 
-To see how to use _AIOHCloud_ you can check out the [documentation](https://aiohcloud.iliya.dev/).
+Let's assume you have a Hetzner Cloud API token and want to get the recommended datacenter to create a server in.
+
+```python
+from aiohcloud import Datacenters, HetznerCloud
+
+TOKEN = "YOUR_TOKEN"
+client = HetznerCloud(token=TOKEN)
+
+
+async def main() -> None:
+    # `HetznerCloud.use` method creates and caches a handler object for your.
+    datacenters = await client.use(Datacenters)
+    async for datacenter, recommended in datacenters.get_datacenters():
+        if datacenter.id == recommended:
+            print(f"{datacenter.name!r} is recommended for you!")
+
+
+if __name__ == "__main__":
+    import asyncio
+
+    asyncio.run(main())
+```
 
 ## License
 
