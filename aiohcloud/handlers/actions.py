@@ -1,21 +1,14 @@
 from typing import TYPE_CHECKING, Any, Dict, Optional
 
 from aiohcloud.enums import ActionStatus, SortOrder
-from aiohcloud.types import (
-    Action,
-    ActionError,
-    ActionResource,
-    Meta,
-    Paginated,
-    Pagination,
-)
+from aiohcloud.types import Action, ActionError, ActionResource, Paginated
 from aiohcloud.utils import Representation
 
 if TYPE_CHECKING:
     from aiohcloud.client import HetznerCloud
 
 
-def action_from_dict(data: Dict[str, Any]) -> Action:
+def _action_from_dict(data: Dict[str, Any]) -> Action:
     data["error"] = ActionError(**e) if (e := data.get("error")) else None
     data["resources"] = [ActionResource(**r) for r in data.get("resources", [])]
     data["status"] = ActionStatus(data["status"])
@@ -46,8 +39,8 @@ class Actions(Representation):
             per_page (`int`, optional): Number of actions per page. Defaults to 50.
 
         Returns:
-            `Paginated[Action]`: Paginated object containing a list of actions and
-            pagination metadata (e.g. total number of actions).
+            A :class:`aiohcloud.types.Paginated` object containing which is a lazy
+            iterator of :class:`aiohcloud.types.Action` objects.
         """
         if status is not None and status.upper() not in ActionStatus.__members__:
             raise ValueError(f"Invalid status: {status!r}") from None
@@ -64,11 +57,10 @@ class Actions(Representation):
                 sort=sort,
             )
         ).json()
-        return Paginated(
-            results=[action_from_dict(a) for a in response["actions"]],
-            meta=Meta(
-                pagination=Pagination(**response["meta"]["pagination"]),
-            ),
+        return Paginated[Action].from_dict(
+            response,
+            _action_from_dict,
+            "actions",
         )
 
     async def get_action(self, action_id: int) -> Action:
@@ -84,4 +76,4 @@ class Actions(Representation):
             method="GET",
             endpoint=f"/actions/{action_id}",
         )
-        return action_from_dict(response.json()["action"])
+        return _action_from_dict(response.json()["action"])
