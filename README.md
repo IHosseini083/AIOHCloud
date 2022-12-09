@@ -7,8 +7,12 @@
     <img src="https://github.com/IHosseini083/AIOHCloud/actions/workflows/publish-docs.yml/badge.svg" alt="Docs">
 </a>
 <a href="https://www.python.org">
-    <img src="https://img.shields.io/badge/Python-3.8+-3776AB.svg?style=flat&logo=python&logoColor=white" alt="Python">
+    <img src="https://img.shields.io/pypi/pyversions/aiohcloud.svg" alt="Python Versions">
 </a>
+<a href="https://github.com/IHosseini083/AIOHCloud">
+    <img src="https://img.shields.io/pypi/v/aiohcloud.svg" alt="PyPI Version">
+</a>
+<br>
 <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat" alt="Code Style: black">
 </a>
