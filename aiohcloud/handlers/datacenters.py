@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, AsyncGenerator, Dict, Optional, Tuple
+from typing import TYPE_CHECKING, Any, AsyncGenerator, Dict, Optional, Tuple, cast
 
 from aiohcloud.types.datacenters import Datacenter, DatacenterServerTypes
 from aiohcloud.types.locations import Location
@@ -48,8 +48,9 @@ class Datacenters(Representation):
             name=name,
         )
         content = response.json()
+        recommendation = cast(int, content["recommendation"])
         for datacenter in content["datacenters"]:
-            yield _datacenter_from_dict(datacenter), content["recommendation"]
+            yield _datacenter_from_dict(datacenter), recommendation
 
     async def get_datacenter(self, datacenter_id: int) -> Datacenter:
         """Get a datacenter by its id.
