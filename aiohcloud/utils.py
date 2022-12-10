@@ -1,4 +1,15 @@
-from typing import Any, List, Tuple
+import re
+from typing import Any, Dict, List, Optional, Tuple
+
+# Borrowed these RegEx patterns from hcloud-python project:
+# https://github.com/hetznercloud/hcloud-python/blob/main/hcloud/helpers/labels.py
+LABLES_KEY_RE = re.compile(
+    r"^([a-z0-9A-Z]((?:[\-_.]|[a-z0-9A-Z]){0,253}[a-z0-9A-Z])?/)"
+    r"?[a-z0-9A-Z]((?:[\-_.]|[a-z0-9A-Z]|){0,62}[a-z0-9A-Z])?$",
+)
+LABELS_VALUE_RE = re.compile(
+    r"^(([a-z0-9A-Z](?:[\-_.]|[a-z0-9A-Z]){0,62})?[a-z0-9A-Z]$|$)",
+)
 
 
 class Representation:
@@ -22,3 +33,18 @@ class Representation:
 
     def __repr__(self) -> str:
         return f"{self.__repr_name__()}({self.__gen_str__(', ')})"
+
+
+def validate_labels(labels: Dict[str, str]) -> Tuple[bool, Optional[str]]:
+    """
+    Validate the given labels based on rules defined by Hetzner Cloud API docs.
+    Returns a tuple containing a boolean indicating if the labels are valid and
+    a string representing the key/value that failed validation or `None` if everything
+    is valid.
+    """
+    for key, value in labels.items():
+        if not LABLES_KEY_RE.match(key):
+            return False, key
+        if not LABELS_VALUE_RE.match(value):
+            return False, value
+    return True, None
