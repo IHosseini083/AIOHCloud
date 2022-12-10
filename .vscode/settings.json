@@ -12,5 +12,7 @@
         ".pytest_cache/": true,
         ".mypy_cache/": true
     },
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "python.testing.pytestArgs": ["tests"],
+    "python.testing.pytestEnabled": true
 }
