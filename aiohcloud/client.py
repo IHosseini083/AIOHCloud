@@ -1,4 +1,10 @@
-from typing import TYPE_CHECKING, ClassVar, Dict, Type, TypeVar, cast
+import sys
+from typing import TYPE_CHECKING, ClassVar, Dict, NoReturn, Type, TypeVar, cast
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 
 from httpx import AsyncClient, Response
 
@@ -23,7 +29,7 @@ def _catch_api_errors(response: Response) -> Response:
 
 
 class HetznerCloud(Representation):
-    """Base async client for Hetzner Cloud API."""
+    """Async client for Hetzner Cloud API."""
 
     API_BASE_URL: ClassVar[str] = "https://api.hetzner.cloud/v1"
     _HANDLERS: ClassVar[Dict[str, "Handler"]] = {}
@@ -72,10 +78,10 @@ class HetznerCloud(Representation):
         """Close the session."""
         await self._session.aclose()
 
-    def __enter__(self) -> "HetznerCloud":
-        raise RuntimeError("Use async with instead.")
+    def __enter__(self) -> NoReturn:
+        raise RuntimeError("Use 'async with ...' instead of 'with ...'")
 
-    async def __aenter__(self) -> "HetznerCloud":
+    async def __aenter__(self) -> Self:  # type: ignore
         return self
 
     async def __aexit__(self, *args) -> None:
