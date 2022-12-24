@@ -60,7 +60,7 @@ client = HetznerCloud(token=TOKEN)
 
 async def main() -> None:
     # `HetznerCloud.use` method creates and caches a handler object for your.
-    datacenters = await client.use(Datacenters)
+    datacenters = client.use(Datacenters)
     async for datacenter, recommended in datacenters.get_datacenters():
         if datacenter.id == recommended:
             print(f"{datacenter.name!r} is recommended for you!")
