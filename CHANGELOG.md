@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format used in this document is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.7] - (2022-01-07)
+
+### Added
+
+- Add `json` parameter to `HetznerCloud.request` method for sending JSON data to the API.
+- Add utility function to validate labels.
+- Add tests for label validator.
+- Add PyPI version badge.
+
+### Changed
+
+- Change string representation of `HetznerCloud` instances by overriding `Representation.__repr_args__` method.
+- Turn `Handler` class into an ABC.
+- Change dependabot interval for python packages to `daily`.
+- Get recommended datacenter before iterating datacenters list, #4 by @IHosseini083.
+- Improve `HetznerCloud` class type hints
+
+### Removed
+
+- Remove poetry pre-commit hook.
+
+### Fixed
+
+- Fix typo: `LABLES_` -> `LABELS_`.
+
 ## [0.0.3] - (2022-12-05)
 
 ### Added
