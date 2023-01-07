@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format used in this document is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.0.7] - (2022-01-07)
+## [0.0.7] - (2023-01-07)
 
 ### Added
 
@@ -60,3 +60,4 @@ The format used in this document is based on [Keep a Changelog](https://keepacha
 
 [0.0.2]: https://github.com/IHosseini083/AIOHCloud/releases/tag/v0.0.2
 [0.0.3]: https://github.com/IHosseini083/AIOHCloud/compare/v0.0.2...v0.0.3
+[0.0.7]: https://github.com/IHosseini083/AIOHCloud/compare/v0.0.3...v0.0.7
