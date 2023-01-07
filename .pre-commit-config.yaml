@@ -15,7 +15,7 @@ repos:
     hooks:
     -   id: black
 -   repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.3.0
+    rev: v2.4.0
     hooks:
     -   id: add-trailing-comma
         args: [--py36-plus]
@@ -25,12 +25,12 @@ repos:
     -   id: pyupgrade
         args: [--py36-plus]
 -   repo: https://github.com/pycqa/isort
-    rev: 5.10.1
+    rev: 5.11.4
     hooks:
     -   id: isort
         args: ["--profile", "black"]
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.176
+    rev: v0.0.213
     hooks:
     -   id: ruff
         args: ["--fix"]
