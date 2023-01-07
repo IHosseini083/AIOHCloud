@@ -22,7 +22,8 @@ from aiohcloud.errors import APIError
 from aiohcloud.utils import Representation
 
 if TYPE_CHECKING:
-    from aiohcloud.handlers import Handler
+    from aiohcloud.handlers.abc import Handler
+    from aiohcloud.utils import ReprArgs
 
     HandlerT = TypeVar("HandlerT", bound=Handler)
 
@@ -57,6 +58,16 @@ class HetznerCloud(Representation):
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json",
         }
+
+    @property
+    def token(self) -> str:
+        """Hetzner Cloud API token."""
+        return self._token
+
+    def __repr_args__(self) -> "ReprArgs":
+        return [
+            ("token", "**********"),
+        ]
 
     async def request(
         self,
