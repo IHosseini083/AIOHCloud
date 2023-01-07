@@ -1,7 +1,7 @@
 from .client import HetznerCloud
 from .handlers import Actions, Datacenters
 
-__version__ = "0.0.3"
+__version__ = "0.0.7"
 __all__ = [
     # Client
     "HetznerCloud",
