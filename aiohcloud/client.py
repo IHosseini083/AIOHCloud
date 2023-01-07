@@ -1,5 +1,15 @@
 import sys
-from typing import TYPE_CHECKING, ClassVar, Dict, NoReturn, Type, TypeVar, cast
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Dict,
+    NoReturn,
+    Optional,
+    Type,
+    TypeVar,
+    cast,
+)
 
 if sys.version_info >= (3, 11):
     from typing import Self
@@ -48,12 +58,19 @@ class HetznerCloud(Representation):
             "Content-Type": "application/json",
         }
 
-    async def request(self, method: str, endpoint: str, **query_params) -> Response:
+    async def request(
+        self,
+        method: str,
+        endpoint: str,
+        json: Optional[Any] = None,
+        **query_params,
+    ) -> Response:
         """Make a request to the Hetzner Cloud API.
 
         Arguments:
             method (`str`): HTTP method.
             endpoint (`str`): API endpoint. e.g `/actions`
+            json (`Mapping[str, Any]`, optional): JSON data to send. Defaults to `None`.
 
         Returns:
             `httpx.Response`: Response object.
@@ -62,6 +79,7 @@ class HetznerCloud(Representation):
             method=method,
             url=endpoint,
             headers=self._headers,
+            json=json,
             params={k: v for k, v in query_params.items() if v},
         )
         return _catch_api_errors(response)
