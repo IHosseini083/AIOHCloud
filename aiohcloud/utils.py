@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 # Borrowed these RegEx patterns from hcloud-python project:
 # https://github.com/hetznercloud/hcloud-python/blob/main/hcloud/helpers/labels.py
-LABLES_KEY_RE = re.compile(
+LABELS_KEY_RE = re.compile(
     r"^([a-z0-9A-Z]((?:[\-_.]|[a-z0-9A-Z]){0,253}[a-z0-9A-Z])?/)"
     r"?[a-z0-9A-Z]((?:[\-_.]|[a-z0-9A-Z]|){0,62}[a-z0-9A-Z])?$",
 )
@@ -43,7 +43,7 @@ def validate_labels(labels: Dict[str, str]) -> Tuple[bool, Optional[str]]:
     is valid.
     """
     for key, value in labels.items():
-        if not LABLES_KEY_RE.match(key):
+        if not LABELS_KEY_RE.match(key):
             return False, key
         if not LABELS_VALUE_RE.match(value):
             return False, value
