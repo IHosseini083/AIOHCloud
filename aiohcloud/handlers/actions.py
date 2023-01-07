@@ -1,11 +1,8 @@
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import Any, Dict, Optional
 
 from aiohcloud.enums import ActionStatus, SortOrder
+from aiohcloud.handlers.abc import Handler
 from aiohcloud.types import Action, ActionError, ActionResource, Paginated
-from aiohcloud.utils import Representation
-
-if TYPE_CHECKING:
-    from aiohcloud.client import HetznerCloud
 
 
 def _action_from_dict(data: Dict[str, Any]) -> Action:
@@ -15,12 +12,7 @@ def _action_from_dict(data: Dict[str, Any]) -> Action:
     return Action(**data)
 
 
-class Actions(Representation):
-    __slots__ = ("_client",)
-
-    def __init__(self, client: "HetznerCloud") -> None:
-        self._client = client
-
+class Actions(Handler):
     async def get_actions(
         self,
         sort: Optional[str] = None,

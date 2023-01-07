@@ -1,5 +1,11 @@
 import re
+import sys
 from typing import Any, Dict, List, Optional, Tuple
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 # Borrowed these RegEx patterns from hcloud-python project:
 # https://github.com/hetznercloud/hcloud-python/blob/main/hcloud/helpers/labels.py
@@ -11,6 +17,9 @@ LABELS_VALUE_RE = re.compile(
     r"^(([a-z0-9A-Z](?:[\-_.]|[a-z0-9A-Z]){0,62})?[a-z0-9A-Z]$|$)",
 )
 
+# Type aliases
+ReprArgs: TypeAlias = List[Tuple[str, Any]]
+
 
 class Representation:
     """Mixin to provide __repr__ method."""
@@ -21,7 +30,7 @@ class Representation:
         """Return the name of the class."""
         return self.__class__.__name__
 
-    def __repr_args__(self) -> List[Tuple[str, Any]]:
+    def __repr_args__(self) -> ReprArgs:
         """Return a list of 2 length tuples containing name and value of attributes."""
         attrs = ((name, getattr(self, name)) for name in self.__slots__)
         return [(name, value) for name, value in attrs if value is not None]

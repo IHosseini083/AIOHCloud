@@ -1,11 +1,8 @@
-from typing import TYPE_CHECKING, Any, AsyncGenerator, Dict, Optional, Tuple, cast
+from typing import Any, AsyncGenerator, Dict, Optional, Tuple, cast
 
+from aiohcloud.handlers.abc import Handler
 from aiohcloud.types.datacenters import Datacenter, DatacenterServerTypes
 from aiohcloud.types.locations import Location
-from aiohcloud.utils import Representation
-
-if TYPE_CHECKING:
-    from aiohcloud.client import HetznerCloud
 
 
 def _datacenter_from_dict(datacenter: Dict[str, Any]) -> Datacenter:
@@ -16,12 +13,7 @@ def _datacenter_from_dict(datacenter: Dict[str, Any]) -> Datacenter:
     return Datacenter(**datacenter)
 
 
-class Datacenters(Representation):
-    __slots__ = ("_client",)
-
-    def __init__(self, client: "HetznerCloud") -> None:
-        self._client = client
-
+class Datacenters(Handler):
     async def get_datacenters(
         self,
         name: Optional[str] = None,
