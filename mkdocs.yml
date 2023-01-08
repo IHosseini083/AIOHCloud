@@ -31,6 +31,7 @@ edit_uri: blob/main/docs/
 nav:
   - Overview: "index.md"
   - Contributing: "contributing.md"
+  - Changelog: "CHANGELOG.md"
 
 markdown_extensions:
   - toc:
